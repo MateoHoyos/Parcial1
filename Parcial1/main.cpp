@@ -27,7 +27,8 @@ Al estar en la ofensiva, se exactamente la posicion en x y h a la cual esta el c
 */
 void Generar_disparos_ofensivos();
 void Generar_disparos_defensivos();
-void disparos_defensivos();
+void disparos_defensivos3();
+void disparos_defensivos4();
 
 //variables globales
 int disparos_ofensivosx_0[3]={0};
@@ -95,10 +96,11 @@ int main()
             break;
 
             case 3:
-            disparos_defensivos();
+            disparos_defensivos3();
             break;
 
             case 4:
+            disparos_defensivos4();
             break;
 
 
@@ -115,7 +117,42 @@ int main()
     return 0;
 }
 
-void disparos_defensivos(){
+void disparos_defensivos4(){
+
+}
+
+
+
+
+void disparos_defensivos3(){
+    int dis_ofensivox=0;
+    int dis_ofensivoy=0;
+    for(int i=0;i<3;i++){
+        disparos_ofensivosx_0[i]=dis_ofensivox;
+        disparos_ofensivosy_0[i]=dis_ofensivoy;
+        for(int i=0;i<3;i++){
+            if((dis_ofensivox==x_D)&&(dis_ofensivoy==y_D)){
+
+                cout<<"Ingrese velocidad inicial: ";cin>>v0_D;
+                cout<<"Ingrese posicion inicial: ";cin>>x0_D;
+                cout<<"Ingrese grados_0: ";cin>>gradosD;
+                cout<<"Ingrese tiempo_0: ";cin>>tD;
+                radD=gradosD*(pi/180);
+                cout<<"Ingrese ditancia en y: ";cin>>HD;
+
+                vxD=v0_D+cos(radD);
+                vyD=v0_D*sin(radD)-g*tD;
+
+                x_D=x0_D+vxD*tD;
+                y_D=HD+vyD*tD-(g*tD*tD)/2;
+
+                disparos_ofensivosx_D[i]=x_D;
+                disparos_ofensivosy_D[i]=y_D;
+            }
+
+        }
+
+    }
 
 }
 
@@ -151,7 +188,7 @@ void Generar_disparos_ofensivos(){
 void Generar_disparos_defensivos(){
 
     for(int i=0;i<3;i++){
-        cout<<"Ingrese velocidad inicial: ";cin>>v0_0;
+        cout<<"Ingrese velocidad inicial: ";cin>>v0_D;
         cout<<"Ingrese posicion inicial: ";cin>>x0_D;
         cout<<"Ingrese grados_0: ";cin>>gradosD;
         cout<<"Ingrese tiempo_0: ";cin>>tD;
