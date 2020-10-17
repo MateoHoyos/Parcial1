@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+#include<math.h>
 /*
  *
  * Opciones del programa
@@ -21,13 +21,30 @@ cañones defensivo y ofensivo puedan ser destruidos.
 void Generar_disparos_ofensivos();
 void Generar_disparos_defensivos();
 
-//***************************
+
 //variables globales
 float g=9.81;
+
+float x_0=0;
+float y_0=0;
+float vx0=0;
+float vy0=0;
+
+float v0_0=0;
 float H0=1;
-float HD=2;
 float grados0=0;
+//***************************
+
+float x_H=0;
+float y_H=0;
+float vxH=0;
+float vyH=0;
+
+float HD=2;
 float gradosH=0;
+float tD=2.5;
+float v0_D=0;
+
 int n=0;
 //***************************
 
@@ -80,5 +97,8 @@ int main()
 }
 
 void Generar_disparos_ofensivos(){
-    cout<<"1 Generar disparos"<<endl;
+    cout<<"Ingrese velocidad inicial: ";cin>>v0_0;
+    cout<<"Ingrese grados_0: ";cin>>grados0;
+
+
 }
