@@ -25,44 +25,70 @@ Al estar en la ofensiva, se exactamente la posicion en x y h a la cual esta el c
 
 
 */
+
+
+//prototipo de funciones
 void Generar_disparos_ofensivos();
 void Generar_disparos_defensivos();
 void disparos_defensivos3();
 void disparos_defensivos4();
+//**************************************
+//**************************************
 
 //variables globales
 int disparos_ofensivosx_0[3]={0};
 int disparos_ofensivosy_0[3]={0};
-int disparos_ofensivosx_D[3]={0};
-int disparos_ofensivosy_D[3]={0};
+
+int disparos_defensivosx_D[3]={0};
+int disparos_defensivosy_D[3]={0};
 
 float g=9.81;
 float pi=3.141592;
-
-float x_0=0;
-float y_0=0;
-float vx0=0;
-float vy0=0;
-float t0=2.5;
-
-float x0_0=0;
-float v0_0=0;
-float H0=1; //son valores conocidos 1 m de altura
-float grados0=0;
-float rad0=0;
 //***************************
 
-float x_D=4; //son valores conocidos distancia de 4 m
-float y_D=2; //son valores conocidos 2 m de altura
+float d=100;//100 metros
+float d_0=0.05*d; //radio del circulo de destruccion de 0
+float d_D=0.025*d; //radio del circulo de destruccion de D
+
+float h0=100; //metros
+float hD=200; //metros
+//*************************************************************
+//enemigo
+float t0=0;
+float rad0=0;
+float grados0=0;
+float vi0=0;
+float vx0=0;
+float vy0=0;
+//posicion en x y y del cañon 0
+float x_0=0; //sistema de referencia en (0.0)
+float y_0=h0;
+
+//float xi_0=0;
+//float yi_0=0;
+
+//posiciones de las balas  0
+float x_0genera=0;
+float y_0genera=0;
+//*************************************************************
+//base donde estoy
+float tD=0;
+float radD=0;
+float gradosD=0;
+float viD=0;
 float vxD=0;
 float vyD=0;
-float tD=2.5;
+//posicion en x y y del cañon D
+float x_D=d;
+float y_D=hD;
 
-float x0_D=0;
-float v0_D=0;
-float HD=1;
-float gradosD=0;
-float radD=0;
+//float xi_D=0;
+//float yi_D=0;
+//posiciones de las balas de D
+float x_Dgenera=0;
+float y_Dgenera=0;
+
+//***************************
 int n=0;
 //***************************
 
@@ -88,15 +114,15 @@ int main()
             break;
 
             case 1:
-            Generar_disparos_ofensivos();
+            //Generar_disparos_ofensivos();
             break;
 
             case 2:
-            Generar_disparos_defensivos();
+            //Generar_disparos_defensivos();
             break;
 
             case 3:
-            disparos_defensivos3();
+            //disparos_defensivos3();
             break;
 
             case 4:
@@ -123,7 +149,7 @@ void disparos_defensivos4(){
 
 
 
-
+/*
 void disparos_defensivos3(){
     int dis_ofensivox=0;
     int dis_ofensivoy=0;
@@ -143,11 +169,11 @@ void disparos_defensivos3(){
                 vxD=v0_D+cos(radD);
                 vyD=v0_D*sin(radD)-g*tD;
 
-                x_D=x0_D+vxD*tD;
-                y_D=HD+vyD*tD-(g*tD*tD)/2;
+                y_Dgenera=x0_D+vxD*tD;
+                y_Dgenera=HD+vyD*tD-(g*tD*tD)/2;
 
-                disparos_ofensivosx_D[i]=x_D;
-                disparos_ofensivosy_D[i]=y_D;
+                //disparos_ofensivosx_D[i]=x_D;
+                //disparos_ofensivosy_D[i]=y_D;
             }
 
         }
@@ -156,10 +182,10 @@ void disparos_defensivos3(){
 
 }
 
+*/
 
-
-
-//infiltrado da los datos con un tiempo de retrase de 2.5 segundos
+/*
+//infiltrado
 void Generar_disparos_ofensivos(){
 
     for(int i=0;i<3;i++){
@@ -172,10 +198,10 @@ void Generar_disparos_ofensivos(){
         vx0=v0_0+cos(rad0);
         vy0=v0_0*sin(rad0)-g*t0;
 
-        x_0=x0_0+vx0*t0;
-        y_0=H0+vy0*t0-(g*t0*t0)/2;
+        x_0genera=x0_0+vx0*t0;
+        y_0genera=H0+vy0*t0-(g*t0*t0)/2;
 
-        if((x_0==x_D)&&(y_0==y_D)){ //posicion del canon
+        if((x_0genera==x_D)&&(y_0genera==y_D)){ //posicion del canon
             disparos_ofensivosx_0[i]=x_0;
             disparos_ofensivosy_0[i]=y_0;
         }
@@ -183,8 +209,9 @@ void Generar_disparos_ofensivos(){
 
 
 }
-
-
+*/
+/*
+//Base donde estoy
 void Generar_disparos_defensivos(){
 
     for(int i=0;i<3;i++){
@@ -198,13 +225,14 @@ void Generar_disparos_defensivos(){
         vxD=v0_D+cos(radD);
         vyD=v0_D*sin(radD)-g*tD;
 
-        x_D=x0_D+vxD*tD;
-        y_D=HD+vyD*tD-(g*tD*tD)/2;
+        x_Dgenera=x0_D+vxD*tD;
+        y_Dgenera=HD+vyD*tD-(g*tD*tD)/2;
 
-        if((x_0==x_D)&&(y_0==y_D)){ //posicion del canon
+        if((x_0==x_Dgenera)&&(y_0==y_Dgenera)){ //posicion del canon
             disparos_ofensivosx_D[i]=x_D;
             disparos_ofensivosy_D[i]=y_D;
         }
     }
 
 }
+*/
