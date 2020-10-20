@@ -97,9 +97,9 @@ int main()
 {
 
 
-    cout<<"Sistema de disparo ofensivo"<<endl;
-    cout<<"1 Generar disparos"<<endl;
-    cout<<"2. Generar disparos"<<endl;
+    cout<<"Sistema de control de disparo defensivo"<<endl;
+    cout<<"1. Generar disparos ofensivos"<<endl;
+    cout<<"2. Generar disparos defensivos"<<endl;
     cout<<"3. Dado un disparo ofensivo"<<endl;
     cout<<"4. Dado un disparo ofensivo"<<endl;
     cout<<"0- salir"<<endl<<endl;
@@ -114,11 +114,11 @@ int main()
             break;
 
             case 1:
-            //Generar_disparos_ofensivos();
+            Generar_disparos_ofensivos();
             break;
 
             case 2:
-            //Generar_disparos_defensivos();
+            Generar_disparos_defensivos();
             break;
 
             case 3:
@@ -184,55 +184,80 @@ void disparos_defensivos3(){
 
 */
 
-/*
-//infiltrado
+
+//base 0, el infiltrado nos da todo los datos
 void Generar_disparos_ofensivos(){
 
+    int raiz;
+    int distancia=0;
+    cout<<"\n\n---Disparos de la ofensiva---\n\n"<<endl;
     for(int i=0;i<3;i++){
-        cout<<"Ingrese velocidad inicial: ";cin>>v0_D;
+        cout<<"Ingrese velocidad inicial: ";cin>>vi0;
         cout<<"Ingrese grados_D: ";cin>>grados0;
         cout<<"Ingrese tiempo_0: ";cin>>t0;
         rad0=grados0*(pi/180);
-        cout<<"Ingrese ditancia en y: ";cin>>H0;
 
-        vx0=v0_0+cos(rad0);
-        vy0=v0_0*sin(rad0)-g*t0;
+        vx0=vi0+cos(rad0);
+        vy0=vi0*sin(rad0)-g*t0;
 
-        x_0genera=x0_0+vx0*t0;
-        y_0genera=H0+vy0*t0-(g*t0*t0)/2;
+        x_0genera=x_0+vx0*t0;
+        y_0genera=y_0+vy0*t0-(g*t0*t0)/2;
 
-        if((x_0genera==x_D)&&(y_0genera==y_D)){ //posicion del canon
-            disparos_ofensivosx_0[i]=x_0;
-            disparos_ofensivosy_0[i]=y_0;
+
+        //Rango de destruccion
+        //distancia entre el origen de la bala y cañon D
+        raiz=pow((x_0genera-x_D),2)+pow((y_0genera-y_D),2);
+        distancia=sqrt(raiz);
+
+        //Ver si el rango de destruccion de la bala del cañon de 0 compromete el cañon D
+        if(distancia<=d_0){
+            cout<<"\n!!Disparo de 0 efectivo!!\n"<<endl;
+            disparos_ofensivosx_0[i]=x_0genera;
+            disparos_ofensivosy_0[i]=y_0genera;
+        }
+        else{
+            cout<<"\nDisparo de 0 fuera del rango\n"<<endl;
         }
     }
-
-
+    cout<<"\n\n-------------------------\n\n"<<endl;
 }
-*/
-/*
-//Base donde estoy
+
+
+
+
+//base 0, el infiltrado nos da todo los datos
 void Generar_disparos_defensivos(){
 
+    int raiz;
+    int distancia=0;
+    cout<<"\n\n---Disparos de la defensiva---\n\n"<<endl;
     for(int i=0;i<3;i++){
-        cout<<"Ingrese velocidad inicial: ";cin>>v0_D;
-        cout<<"Ingrese posicion inicial: ";cin>>x0_D;
-        cout<<"Ingrese grados_0: ";cin>>gradosD;
+        cout<<"Ingrese velocidad inicial: ";cin>>viD;
+        cout<<"Ingrese grados_D: ";cin>>gradosD;
         cout<<"Ingrese tiempo_0: ";cin>>tD;
         radD=gradosD*(pi/180);
-        cout<<"Ingrese ditancia en y: ";cin>>HD;
 
-        vxD=v0_D+cos(radD);
-        vyD=v0_D*sin(radD)-g*tD;
+        vxD=viD+cos(radD);
+        vyD=viD*sin(radD)-g*tD;
 
-        x_Dgenera=x0_D+vxD*tD;
-        y_Dgenera=HD+vyD*tD-(g*tD*tD)/2;
+        x_Dgenera=x_D+vxD*tD;
+        y_Dgenera=y_D+vyD*tD-(g*tD*tD)/2;
 
-        if((x_0==x_Dgenera)&&(y_0==y_Dgenera)){ //posicion del canon
-            disparos_ofensivosx_D[i]=x_D;
-            disparos_ofensivosy_D[i]=y_D;
+
+        //Rango de destruccion
+        //distancia entre el origen de la bala y cañon 0
+        raiz=pow((x_Dgenera-x_0),2)+pow((y_Dgenera-y_0),2);
+        distancia=sqrt(raiz);
+
+        //Ver si el rango de destruccion de la bala del cañon de D compromete el cañon 0
+        if(distancia<=d_D){
+            cout<<"\n!!Disparo de D efectivo!!\n"<<endl;
+            disparos_defensivosx_D[i]=x_Dgenera;
+            disparos_defensivosy_D[i]=y_Dgenera;
+        }
+        else{
+            cout<<"\nDisparo de D fuera del rango\n"<<endl;
         }
     }
-
+    cout<<"\n\n-------------------------\n\n"<<endl;
 }
-*/
